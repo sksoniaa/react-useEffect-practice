@@ -2,24 +2,34 @@ import { useState, useEffect } from "react"
 
 function App() {
 
-  const [time, setTime] = useState(0)
+  const [count, setCount] = useState(0)
+
+
+  // useEffect is used to perform side effect in our component
+  // -- Fetching data from API
+  // -- Updating the DOM - document & window
+  // -- Timer functions - setInterval / clearInterval
+  
+
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(time + 1)
-    }, 1000)
 
+    console.log('useEffect ', count);
 
     return () => {
-      clearInterval(timer) // This ensures that the interval is stopped when the component is unmounted or when the time variable changes.
+      console.log('clean up ', count);
     }
-  }, [time])
 
+
+  }, [count])
+
+  console.log('function rendered');
 
   return (
     <>
       <div>
-        <h3>{time} in seconds!</h3>
+        <button onClick={() => setCount(count + 1)}>Increase</button>
+        <h3>{count} - Count</h3>
 
       </div>
     </>
